@@ -1,5 +1,5 @@
 import LoginPage from './components/LoginPage'
-import Home from './components/Home'
+import WorkCenter from './components/WorkCenter'
 import ProtectedRoute from './components/ProtectedRoute'
 
 
@@ -12,7 +12,7 @@ function App() {
       <div className="App">
         <Switch>
           <Route path='/' exact render={() => <LoginPage />} />
-          <ProtectedRoute path='/home/:name' exact component={Home}/>
+          <ProtectedRoute path='/home/:name' exact component={WorkCenter}/>
         </Switch>
       </div>
     </Router>

@@ -1,5 +1,6 @@
 * {
   font-family: sans-serif;
+  margin: 0;
 }
 .loginPage {
   display: flex;
@@ -56,4 +57,42 @@
   padding: 1vw;
   border-radius: 50%;
   box-shadow: .5vw .5vw .1vw rgb(0, 89, 255);
+}
+.pageHeader {
+  display: flex;
+  align-items: center;
+  background: rgb(61, 4, 78);
+  border-bottom: .6vw solid purple;
+}
+.pageHeaderText {
+  font-size: 3vw;
+  font-weight: 700;
+  color: rgba(154, 18, 196, 0.979);
+  padding: 2vw;
+}
+.logoutCon {
+  display: flex;
+  align-items: center;
+}
+.logoutPic {
+  width: 3vw;
+}
+.navTabsCon {
+  display: flex;
+  justify-content: space-between;
+}
+.navTab {
+  width: 100%;
+  padding-top: 1vw;
+  font-size: 2vw;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+  background:  rgba(154, 18, 196, 0.979);
+  transition: color 300ms ease, background 300ms ease;
+}
+.navTab:hover, .navTab:focus {
+  background:  rgba(182, 21, 231, 0.979);
+  color: black;
+  cursor: pointer;
 }
