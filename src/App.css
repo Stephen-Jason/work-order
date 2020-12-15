@@ -1,0 +1,59 @@
+* {
+  font-family: sans-serif;
+}
+.loginPage {
+  display: flex;
+}
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: 0 auto;
+  border-radius: 10%;
+  background: rgb(0, 89, 255);
+  padding: 5vw;
+}
+.loginLabel {
+  text-align: center;
+  font-size: 3vw;
+  font-weight: 800;
+  color: white;
+  margin: 1vw 0;
+}
+.loginUser, .loginPassword {
+  padding: 1vw;
+  border: none;
+  font-size: 1.5vw;
+  transition: outline 200ms ease;
+}
+.loginUser:focus, .loginPassword:focus {
+  outline: .4vw solid rgb(0, 153, 255);
+}
+.loginSubmitBtn {
+  margin-top: 3vw;
+  margin-left: auto;
+  width: fit-content;
+  padding: 1vw 1.5vw;
+  font-size: 1.5vw;
+  font-weight: 700;
+  border: none;
+  border-radius: 10%;
+  background: rgb(12, 99, 12);
+  color: white;
+}
+.loginSubmitBtn:hover {
+  background: rgb(4, 187, 4);
+}
+.users {
+  width: 30%;
+  margin: 0 auto;
+  text-align: center;
+}
+.userInfo {
+  color: royalblue;
+  font-weight: 900;
+  font-size: 2vw;
+  padding: 1vw;
+  border-radius: 50%;
+  box-shadow: .5vw .5vw .1vw rgb(0, 89, 255);
+}
