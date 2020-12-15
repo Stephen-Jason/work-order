@@ -5,7 +5,19 @@ class Auth {
     }
 
     login(username, password){
-        if(username == 'stephen' && password == '1234'){
+        if(username === 'Admin' && password === '1234'){
+            this.authenticated = true;
+            return true;
+        }
+        else if(username === 'Jane' && password === '1234'){
+            this.authenticated = true;
+            return true;
+        }
+        else if(username === 'Alice' && password === '1234'){
+            this.authenticated = true;
+            return true;
+        }
+        else if(username === 'Timothy' && password === '1234'){
             this.authenticated = true;
             return true;
         }
