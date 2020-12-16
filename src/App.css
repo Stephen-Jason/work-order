@@ -82,6 +82,7 @@
   justify-content: space-between;
 }
 .navTab {
+  position: relative;
   width: 100%;
   padding-top: 1vw;
   font-size: 2vw;
@@ -91,8 +92,22 @@
   background:  rgba(154, 18, 196, 0.979);
   transition: color 300ms ease, background 300ms ease;
 }
-.navTab:hover, .navTab:focus {
+.navTabArrow {
+  pointer-events: none;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 50%;
+  transform: translateY(100%);
+  background:  rgba(182, 21, 231, 0.979);
+  clip-path: polygon(52% 100%, 0 0, 100% 0);
+  opacity: 0;
+}
+.navTab:hover, .tabClicked {
   background:  rgba(182, 21, 231, 0.979);
   color: black;
   cursor: pointer;
+  opacity: 1;
 }
