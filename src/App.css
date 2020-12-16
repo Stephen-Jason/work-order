@@ -111,3 +111,78 @@
   cursor: pointer;
   opacity: 1;
 }
+.newCustomerCon {
+  width: 30%;
+  margin: 0 auto;
+  margin-top: 2vw;
+  display: flex;
+  flex-direction: column;
+  border: 1vw solid blue;
+  border-radius: 5%;
+  padding: 3vw;
+  background: blue;
+}
+.customerInput {
+  padding: 1vw;
+  width: 50%;
+  
+  margin-top: 1vw;
+  margin-bottom: .5vw;
+}
+.customerLabel {
+  
+  font-size: 2vw;
+  font-weight: 600;
+  color: whitesmoke;
+}
+.addCustomerBtn {
+  width: fit-content;
+  margin-left: auto;
+  margin-top: 3vw;
+  padding: .5vw 1vw;
+  font-size: 1.5vw;
+  font-weight: 600;
+  background: green;
+  color: white;
+  border: none;
+}
+.newCustomerCon div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.error {
+  width: fit-content;
+  margin: 0 auto;
+  background: red;
+  color: white;
+  font-size: 2vw;
+  font-weight: 500;
+  text-align: center;
+  padding: 1vw;
+}
+.addedCustomerMessage {
+  width: fit-content;
+  margin: 0 auto;
+  margin-top: 2vw;
+  background: green;
+  color: white;
+  font-size: 1.5vw;
+  font-weight: 500;
+  text-align: center;
+  padding: 1vw;
+}
+.customerCon {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 2vw;
+  background: blue;
+  padding: 3vw;
+}
+.customerInfo {
+  background: white;
+  margin: .5vw 0;
+  padding: .5vw;
+  font-size: 2vw;
+  font-weight: 500;
+}
