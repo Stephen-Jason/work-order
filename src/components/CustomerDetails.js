@@ -8,7 +8,7 @@ const CustomerDetails = (props) => {
     let workOrders = JSON.parse(localStorage.getItem('workOrders'));
 
     let customerWorkOrders;
-    workOrders ? customerWorkOrders = workOrders.filter(item => item.id === id) : customerWorkOrders = false;
+    workOrders ? customerWorkOrders = workOrders.filter(item => item.customerId === parseInt(id)) : customerWorkOrders = false;
     let customer = customers.filter(item => item.id === parseInt(id));
 
     return (
@@ -25,12 +25,11 @@ const CustomerDetails = (props) => {
                 </div>)}
             {customerWorkOrders ? customerWorkOrders.map(item =>
                 <div>
-                    <p className='workOrderInfo'>NAME: {item.name}</p>
-                    <p className='workOrderInfo'>SURNAME: {item.surname}</p>
-                    <p className='workOrderInfo'>TELEPHONE: {item.telephone}</p>
-                    <p className='workOrderInfo'>ADDRESS: {item.address}</p>
-                    <p className='workOrderInfo'>SIGN UP DATE: {item.signUpDate}</p>
-                    <p className='workOrderInfo'>CUSTOMER ID: {item.id}</p>
+                    <p className='workOrderInfo'>DATE RECEIVED: {item.dateContacted}</p>
+                    <p className='workOrderInfo'>DATE CREATED: {item.dateCreated}</p>
+                    <p className='workOrderInfo'>TECHNICIAN: {item.assignedTechnician}</p>
+                    <p className='workOrderInfo'>DESCRIPTION: {item.workOrderDescription}</p>
+                    <p className='workOrderInfo'>CUSTOMER ID: {item.workOrderId}</p>
                 </div>) : <p>No Work Orders for this customer</p>}
         </div>
     )

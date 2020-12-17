@@ -161,7 +161,7 @@
   text-align: center;
   padding: 1vw;
 }
-.addedCustomerMessage {
+.addedCustomerMessage, .addedWorkOrderMessage {
   width: fit-content;
   margin: 0 auto;
   margin-top: 2vw;
