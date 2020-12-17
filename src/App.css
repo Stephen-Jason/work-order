@@ -186,3 +186,34 @@
   font-size: 2vw;
   font-weight: 500;
 }
+.customerDetailsBtn, .customerInfoEditBtn {
+  border: none;
+  background: green;
+  font-size: 2vw;
+  font-weight: 500;
+  color: white;
+  padding: 1vw;
+}
+.customerSearchCon {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 2vw;
+}
+.customerSearchInput {
+  padding: 2vw;
+  width: 100%;
+  background: blue;
+  color: white;
+}
+.customerSearchBtn {
+  color: white;
+  background: url('./searchIcon2.png');
+  background-size: cover;
+}
+.hide {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+}

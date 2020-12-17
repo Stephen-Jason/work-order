@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import logout from '../logout.png'
 import NewCustomer from './NewCustomer'
 import Customers from './Customers'
+import NewWorkOrder from './NewWorkOrder'
 
 const AdminPage = (props) => {
 
@@ -42,7 +43,7 @@ return (
             <p className='navTab' name='tab'>New Customer<span className='navTabArrow'></span></p>
             <p className='navTab' name='tab'>New Technician<span className='navTabArrow'></span></p>
         </nav>
-        {tab === 'Work Orders' ? <p>work orders page</p> : tab === 'Technicians' ? <p>technicians page</p> : tab === 'Customers' ? <Customers/> : tab === 'New Work Order' ? <p>new work orders page</p> : tab === 'New Customer' ? <NewCustomer/> : tab === 'New Technician' ? <p>new technician page</p> : null}
+        {tab === 'Work Orders' ? <p>work orders page</p> : tab === 'Technicians' ? <p>technicians page</p> : tab === 'Customers' ? <Customers/> : tab === 'New Work Order' ? <NewWorkOrder/> : tab === 'New Customer' ? <NewCustomer/> : tab === 'New Technician' ? <p>new technician page</p> : null}
     </div>
 )
 }

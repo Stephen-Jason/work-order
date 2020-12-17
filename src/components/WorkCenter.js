@@ -4,11 +4,11 @@ import TechyPage from './TechyPage'
 
 const WorkCenter = (props) => {
 
-    const {name} = useParams();
+    const { name } = useParams();
 
     return (
         <div>
-            {name === 'Admin' ? <AdminPage name={name}/> : <TechyPage name={name} />}
+            {name === 'Admin' ? <AdminPage name={name} /> : <TechyPage name={name} />}
         </div>
     )
 }
