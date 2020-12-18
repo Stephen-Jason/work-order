@@ -186,7 +186,7 @@
   font-size: 2vw;
   font-weight: 500;
 }
-.customerDetailsBtn, .customerInfoEditBtn {
+.customerDetailsBtn, .customerInfoEditBtn, .selectCustomerBtn, .createWorkOrderBtn {
   border: none;
   background: green;
   font-size: 2vw;
@@ -213,7 +213,27 @@
   background-size: cover;
 }
 .hide {
+  display: none;
   position: absolute;
   pointer-events: none;
   opacity: 0;
+}
+.workOrderCon {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: 0 auto;
+  margin-top: 1vw;
+  background: blueviolet;
+  padding: 3vw;
+  
+}
+.workOrderInfo {
+  font-weight: 500;
+  font-size: 2vw;
+  background: white;
+  margin-top: .5vw;
+}
+.workOrderInfoSpan {
+  background: yellow;
 }

@@ -35,13 +35,21 @@ const NewWorkOrder = () => {
         if (name === 'searchNameBtn') {
             let searchResults = customers.filter(item => item.name.toLowerCase().includes(searchName));
             setCustomerList(searchResults);
+            setSuccessMessage(false);
+            setErrorMessage(false);
             document.querySelector('.searchCustomerResultsCon').classList.remove('hide');
-            document.querySelector('.newWorkOrderCon').classList.add('hide');
+            let newWorkOrderCon = document.querySelector('.newWorkOrderCon');
+            if(newWorkOrderCon){
+                newWorkOrderCon.classList.add('hide');
+            }
         }
         else if (name === 'selectCustomerBtn') {
             let chosenCustomer = customers.filter(item => item.id === id);
             setSelectedCustomer(chosenCustomer);
-            document.querySelector('.newWorkOrderCon').classList.remove('hide');
+            let newWorkOrderCon = document.querySelector('.newWorkOrderCon');
+            if(newWorkOrderCon){
+                newWorkOrderCon.classList.remove('hide');
+            }
             document.querySelector('.searchCustomerResultsCon').classList.add('hide');
         }
         else if (name === 'createWorkOrderBtn') {
@@ -63,7 +71,10 @@ const NewWorkOrder = () => {
                     });
                     localStorage.setItem('workOrders', JSON.stringify(workOrderList));
                     setSuccessMessage(`Work Order ID: ${workOrdersLength + 1} was added to the system`);
-                    document.querySelector('.newWorkOrderCon').classList.add('hide');
+                    let newWorkOrderCon = document.querySelector('.newWorkOrderCon');
+                    if(newWorkOrderCon){
+                        newWorkOrderCon.classList.add('hide');
+                    }
                     setWorkOrderDescription('');
                     setDateReceived('');
                 }
@@ -80,7 +91,10 @@ const NewWorkOrder = () => {
                     });
                     localStorage.setItem('workOrders', JSON.stringify(workOrderList));
                     setSuccessMessage(`Work Order ID: 1 was added to the system`);
-                    document.querySelector('.newWorkOrderCon').classList.add('hide');
+                    let newWorkOrderCon = document.querySelector('.newWorkOrderCon');
+                    if(newWorkOrderCon){
+                        newWorkOrderCon.classList.add('hide');
+                    }
                     setWorkOrderDescription('');
                     setDateReceived('');
                 }
@@ -114,12 +128,12 @@ const NewWorkOrder = () => {
                 {
                     customerList ?
                         customerList.map(item =>
-                            <div key={item.id}>
-                                <p>NAME : {item.name}</p>
-                                <p>SURNAME : {item.surname}</p>
-                                <p>TELEPHONE : {item.telephone}</p>
-                                <p>ADDRESS : {item.address}</p>
-                                <p>ID : {item.id}</p>
+                            <div className='customerCon' key={item.id}>
+                                <p className='customerInfo'>NAME : {item.name}</p>
+                                <p className='customerInfo'>SURNAME : {item.surname}</p>
+                                <p className='customerInfo'>TELEPHONE : {item.telephone}</p>
+                                <p className='customerInfo'>ADDRESS : {item.address}</p>
+                                <p className='customerInfo'>ID : {item.id}</p>
                                 <button
                                     name='selectCustomerBtn'
                                     className='selectCustomerBtn'
@@ -127,28 +141,30 @@ const NewWorkOrder = () => {
                             </div>) : <p>No results found</p>
                 }
             </div>
-            <div className='newWorkOrderCon'>
+            <div className='workOrderCon'>
                 {selectedCustomer ? selectedCustomer.map(item =>
                     <div className='newWorkOrder' key={item.id}>
-                        <p className='workOrderInfo'>NAME: {item.name}</p>
-                        <p className='workOrderInfo'>SURNAME: {item.surname}</p>
-                        <p className='workOrderInfo'>TELEPHONE: {item.telephone}</p>
-                        <p className='workOrderInfo'>ADDRESS: {item.address}</p>
-                        <label>DATE RECEIVED :</label>
+                        <p className='workOrderInfo'>NAME: <span className='workOrderInfoSpan'>{item.name}</span></p>
+                        <p className='workOrderInfo'>SURNAME: <span className='workOrderInfoSpan'>{item.surname}</span></p>
+                        <p className='workOrderInfo'>TELEPHONE: <span className='workOrderInfoSpan'>{item.telephone}</span></p>
+                        <p className='workOrderInfo'>ADDRESS: <span className='workOrderInfoSpan'>{item.address}</span></p>
+                        <label className='workOrderInfo'>DATE RECEIVED :</label>
                         <input
                             type='date'
                             name='newWorkOrderDateReceived'
                             className='workOrderInfo'
+                            value={dateReceived}
                             onChange={(e) => handleChange(e)} />
-                        <p className='workOrderInfo'>CUSTOMER ID: {item.id}</p>
-                        <label>DESCRIPTION</label>
+                        <p className='workOrderInfo'>CUSTOMER ID: <span  className='workOrderInfoSpan'>{item.id}</span></p>
+                        <label className='workOrderInfo'>DESCRIPTION</label>
                         <textarea
                             name='newWorkOrderDescription'
                             className='newWorkOrderDescription'
                             value={workOrderDescription}
-                            onChange={(e) => handleChange(e)}>
+                            onChange={(e) => handleChange(e)}
+                            cols='40'>
                         </textarea>
-                        <label>TECHNICIAN</label>
+                        <label className='workOrderInfo'>TECHNICIAN</label>
                         <select
                             name='newWorkOrderTechnician'
                             value={technician}
