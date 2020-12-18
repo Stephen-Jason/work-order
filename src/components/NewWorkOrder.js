@@ -67,7 +67,9 @@ const NewWorkOrder = () => {
                         workOrderDescription: workOrderDescription,
                         assignedTechnician: technician,
                         dateCreated: today,
-                        dateContacted: dateReceived
+                        dateContacted: dateReceived,
+                        status: 'Open',
+                        techClaimed: 'Unclaimed'
                     });
                     localStorage.setItem('workOrders', JSON.stringify(workOrderList));
                     setSuccessMessage(`Work Order ID: ${workOrdersLength + 1} was added to the system`);
@@ -87,7 +89,9 @@ const NewWorkOrder = () => {
                         workOrderDescription: workOrderDescription,
                         assignedTechnician: technician,
                         dateCreated: today,
-                        dateContacted: dateReceived
+                        dateContacted: dateReceived,
+                        status: 'Open',
+                        techClaimed: 'Unclaimed'
                     });
                     localStorage.setItem('workOrders', JSON.stringify(workOrderList));
                     setSuccessMessage(`Work Order ID: 1 was added to the system`);
