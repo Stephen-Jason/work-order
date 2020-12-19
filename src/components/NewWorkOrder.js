@@ -39,7 +39,7 @@ const NewWorkOrder = () => {
             setErrorMessage(false);
             document.querySelector('.searchCustomerResultsCon').classList.remove('hide');
             let newWorkOrderCon = document.querySelector('.newWorkOrderCon');
-            if(newWorkOrderCon){
+            if (newWorkOrderCon) {
                 newWorkOrderCon.classList.add('hide');
             }
         }
@@ -47,7 +47,7 @@ const NewWorkOrder = () => {
             let chosenCustomer = customers.filter(item => item.id === id);
             setSelectedCustomer(chosenCustomer);
             let newWorkOrderCon = document.querySelector('.newWorkOrderCon');
-            if(newWorkOrderCon){
+            if (newWorkOrderCon) {
                 newWorkOrderCon.classList.remove('hide');
             }
             document.querySelector('.searchCustomerResultsCon').classList.add('hide');
@@ -74,7 +74,7 @@ const NewWorkOrder = () => {
                     localStorage.setItem('workOrders', JSON.stringify(workOrderList));
                     setSuccessMessage(`Work Order ID: ${workOrdersLength + 1} was added to the system`);
                     let newWorkOrderCon = document.querySelector('.newWorkOrderCon');
-                    if(newWorkOrderCon){
+                    if (newWorkOrderCon) {
                         newWorkOrderCon.classList.add('hide');
                     }
                     setWorkOrderDescription('');
@@ -96,7 +96,7 @@ const NewWorkOrder = () => {
                     localStorage.setItem('workOrders', JSON.stringify(workOrderList));
                     setSuccessMessage(`Work Order ID: 1 was added to the system`);
                     let newWorkOrderCon = document.querySelector('.newWorkOrderCon');
-                    if(newWorkOrderCon){
+                    if (newWorkOrderCon) {
                         newWorkOrderCon.classList.add('hide');
                     }
                     setWorkOrderDescription('');
@@ -145,38 +145,59 @@ const NewWorkOrder = () => {
                             </div>) : <p>No results found</p>
                 }
             </div>
-            <div className='workOrderCon'>
+            <div className='newWorkOrderCon'>
                 {selectedCustomer ? selectedCustomer.map(item =>
                     <div className='newWorkOrder' key={item.id}>
-                        <p className='workOrderInfo'>NAME: <span className='workOrderInfoSpan'>{item.name}</span></p>
-                        <p className='workOrderInfo'>SURNAME: <span className='workOrderInfoSpan'>{item.surname}</span></p>
-                        <p className='workOrderInfo'>TELEPHONE: <span className='workOrderInfoSpan'>{item.telephone}</span></p>
-                        <p className='workOrderInfo'>ADDRESS: <span className='workOrderInfoSpan'>{item.address}</span></p>
-                        <label className='workOrderInfo'>DATE RECEIVED :</label>
-                        <input
-                            type='date'
-                            name='newWorkOrderDateReceived'
-                            className='workOrderInfo'
-                            value={dateReceived}
-                            onChange={(e) => handleChange(e)} />
-                        <p className='workOrderInfo'>CUSTOMER ID: <span  className='workOrderInfoSpan'>{item.id}</span></p>
-                        <label className='workOrderInfo'>DESCRIPTION</label>
-                        <textarea
-                            name='newWorkOrderDescription'
-                            className='newWorkOrderDescription'
-                            value={workOrderDescription}
-                            onChange={(e) => handleChange(e)}
-                            cols='40'>
-                        </textarea>
-                        <label className='workOrderInfo'>TECHNICIAN</label>
-                        <select
-                            name='newWorkOrderTechnician'
-                            value={technician}
-                            onChange={(e) => handleChange(e)}>
-                            <option>Jane</option>
-                            <option>Alice</option>
-                            <option>Timothy</option>
-                        </select>
+                        <div>
+                            <label>NAME</label>
+                            <p className='workOrderInfo'>{item.name}</p>
+                        </div>
+                        <div>
+                            <label>SURNAME</label>
+                            <p className='workOrderInfo'>{item.surname}</p>
+                        </div>
+                        <div>
+                            <label>TELEPHONE</label>
+                            <p className='workOrderInfo'>{item.telephone}</p>
+                        </div>
+                        <div>
+                            <label>ADDRESS</label>
+                            <p className='workOrderInfo'>{item.address}</p>
+                        </div>
+                        <div>
+                            <label>CUSTOMER ID</label>
+                            <p className='workOrderInfo'>{item.id}</p>
+                        </div>
+                        <div>
+                            <label>DATE RECEIVED</label>
+                            <input
+                                type='date'
+                                name='newWorkOrderDateReceived'
+                                className='workOrderInfo'
+                                value={dateReceived}
+                                onChange={(e) => handleChange(e)} />
+                        </div>
+                        <div>
+                            <label>DESCRIPTION</label>
+                            <textarea
+                                name='newWorkOrderDescription'
+                                className='newWorkOrderDescription'
+                                value={workOrderDescription}
+                                onChange={(e) => handleChange(e)}
+                                cols='40'>
+                            </textarea>
+                        </div>
+                        <div>
+                            <label>TECHNICIAN</label>
+                            <select
+                                name='newWorkOrderTechnician'
+                                value={technician}
+                                onChange={(e) => handleChange(e)}>
+                                <option>Jane</option>
+                                <option>Alice</option>
+                                <option>Timothy</option>
+                            </select>
+                        </div>
                         <button
                             name='createWorkOrderBtn'
                             className='createWorkOrderBtn'

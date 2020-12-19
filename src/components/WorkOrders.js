@@ -55,7 +55,7 @@ const WorkOrders = () => {
 
     return (
         <div>
-            <div className='workOrderSortCon'>
+            <div className='workOrderSelectCon'>
                 <select
                     name='sortBy'
                     value={sortBy}
@@ -77,15 +77,42 @@ const WorkOrders = () => {
             </div>
             {workOrders ? filteredBy(sortedBy(sortBy), filterBy).map(item =>
                 <div className='workOrderCon' key={item.workOrderId}>
-                    <p className='workOrderInfo'>CUSTOMER: {getCustomerInfo(item.customerId).name} {getCustomerInfo(item.customerId).surname}</p>
-                    <p className='workOrderInfo'>CUSTOMER ID: {item.customerId}</p>
-                    <p className='workOrderInfo'>DATE RECEIVED: {item.dateContacted}</p>
-                    <p className='workOrderInfo'>DATE CREATED: {item.dateCreated}</p>
-                    <p className='workOrderInfo'>TECHNICIAN: {item.assignedTechnician}</p>
-                    <p className='workOrderInfo'>DESCRIPTION: {item.workOrderDescription}</p>
-                    <p className='workOrderInfo'>WORK ORDER ID: {item.workOrderId}</p>
-                    <p className='workOrderInfo'>STATUS: {item.status}</p>
-                    <p className='workOrderInfo'>TECHNICIAN CLAIMED: {item.techClaimed === 'Claimed' ? 'YES' : 'NO'}</p>
+                    <div>
+                        <label>CUSTOMER</label>
+                        <p className='workOrderInfo'>{getCustomerInfo(item.customerId).name} {getCustomerInfo(item.customerId).surname}</p>
+                    </div>
+                    <div>
+                        <label>CUSTOMER ID</label>
+                        <p className='workOrderInfo'>{item.customerId}</p>
+                    </div>
+                    <div>
+                        <label>DATE RECEIVED</label>
+                        <p className='workOrderInfo'>{item.dateContacted}</p>
+                    </div>
+                    <div>
+                        <label>DATE CREATED</label>
+                        <p className='workOrderInfo'>{item.dateCreated}</p>
+                    </div>
+                    <div>
+                        <label>TECHNICIAN</label>
+                        <p className='workOrderInfo'>{item.assignedTechnician}</p>
+                    </div>
+                    <div>
+                        <label>DESCRIPTION</label>
+                        <p className='workOrderInfo'>{item.workOrderDescription}</p>
+                    </div>
+                    <div>
+                        <label>WORK ORDER ID</label>
+                        <p className='workOrderInfo'>{item.workOrderId}</p>
+                    </div>
+                    <div>
+                        <label>STATUS</label>
+                        <p className='workOrderInfo'>{item.status}</p>
+                    </div>
+                    <div>
+                        <label>TECHNICIAN CLAIMED</label>
+                        <p className='workOrderInfo'>{item.techClaimed === 'Claimed' ? 'YES' : 'NO'}</p>
+                    </div>
                 </div>) : <p>no work orders</p>}
         </div>
     )

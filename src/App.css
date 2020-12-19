@@ -218,22 +218,36 @@
   pointer-events: none;
   opacity: 0;
 }
-.workOrderCon {
+.workOrderCon, .newWorkOrder {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 50%;
   margin: 0 auto;
   margin-top: 1vw;
-  background: blue;
+  background: rgb(37, 37, 218);
   padding: 3vw;
-  
+}
+.workOrderCon div, .newWorkOrder div {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1vw;
+}
+.workOrderCon label, .newWorkOrder label {
+  color: white;
+  font-size: 2vw;
+  font-weight: 500;
 }
 .workOrderInfo {
-  font-weight: 500;
-  font-size: 2vw;
+  width: 50%;
   background: white;
-  margin-top: .5vw;
+  font-size: 1.5vw;
+  font-weight: 800;
+  text-align: right;
+  text-transform: uppercase;
 }
-.workOrderInfoSpan {
-  background: yellow;
+.workOrderSelectCon {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  margin: 0 auto;
 }

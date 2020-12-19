@@ -37,7 +37,7 @@ return (
             </div>
         </header>
         <nav className='navTabsCon'>
-            <p className='navTab' name='tab'>Work Orders<span className='navTabArrow'></span></p>
+            <p className='navTab tabClicked' name='tab'>Work Orders<span className='navTabArrow tabClicked'></span></p>
             <p className='navTab' name='tab'>Technicians<span className='navTabArrow'></span></p>
             <p className='navTab' name='tab'>Customers<span className='navTabArrow'></span></p>
             <p className='navTab' name='tab'>New Work Order<span className='navTabArrow'></span></p>
