@@ -4,12 +4,12 @@ const TechWorkOrders = (props) => {
 
     const [sortBy, setSortBy] = useState('All');
     const [filterBy, setFilterBy] = useState('All');
-    const [displayWorkOrders, setDisplayWorkOrders] = useState('');
+    const [displayWorkOrders, setDisplayWorkOrders] = useState(JSON.parse(localStorage.getItem('workOrders')).filter(item => item.assignedTechnician === props.name));
+    const [resoloutionDescription, setResoloutionDescription] = useState('');
 
-    let workOrders = JSON.parse(localStorage.getItem('workOrders'));
+    let workOrders = [...displayWorkOrders];
     let technician = props.name;
     let customers = JSON.parse(localStorage.getItem('customers'));
-   
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -33,6 +33,21 @@ const TechWorkOrders = (props) => {
             curWorkOrder[0].techClaimedDate = today;
             workOrdersList.splice(index, 1, curWorkOrder[0]);
             localStorage.setItem('workOrders', JSON.stringify(workOrdersList));
+            setDisplayWorkOrders(JSON.parse(localStorage.getItem('workOrders')).filter(item => item.assignedTechnician === props.name));
+        }
+        else if (name === 'resoloutionBtn') {
+            let resoloutionDescription = document.querySelector(`.resoloutionDescription-${id}`);
+            let date = new Date();
+            let today = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+            let workOrdersList = [...workOrders];
+            let curWorkOrder = workOrdersList.filter(item => item.workOrderId === id);
+            let index = workOrdersList.indexOf(curWorkOrder[0]);
+            curWorkOrder[0].resolvedDescription = resoloutionDescription.value;
+            curWorkOrder[0].resolvedDate = today;
+            curWorkOrder[0].status = 'Closed';
+            workOrdersList.splice(index, 1, curWorkOrder[0]);
+            localStorage.setItem('workOrders', JSON.stringify(workOrdersList));
+            setDisplayWorkOrders(JSON.parse(localStorage.getItem('workOrders')).filter(item => item.assignedTechnician === props.name));
         }
     }
 
@@ -71,7 +86,7 @@ const TechWorkOrders = (props) => {
         }
     }
 
-    
+
     return (
         <div>
             <div className='workOrderSelectCon'>
@@ -137,6 +152,23 @@ const TechWorkOrders = (props) => {
                             <div>
                                 <label>CLAIMED</label>
                                 <p className='workOrderInfo'>{item.techClaimedDate}</p>
+                            </div>}
+                        {!item.resolvedDescription && item.techClaimed ?
+                            <div>
+                                <label>RESOLOUTION</label>
+                                <textarea
+                                    name='resoloutionDescription'
+                                    className={`resoloutionDescription-${item.workOrderId}`}></textarea>
+                                <button
+                                    name='resoloutionBtn'
+                                    className='resoloutionBtn'
+                                    onClick={(e) => handleClick(e, item.workOrderId)}>Resolve Order</button>
+                            </div> :
+                            <div>
+                                <label>RESOLOUTION DATE</label>
+                                <p className='workOrderInfo'>>{item.resolvedDate}</p>
+                                <label>RESOLOUTION DESCRIPTION</label>
+                                <p className='workOrderInfo'>>{item.resolvedDescription}</p>
                             </div>}
                     </div>
                 </div>) : <p>no work orders</p>}

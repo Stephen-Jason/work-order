@@ -233,7 +233,7 @@
   justify-content: space-between;
   margin-top: 1vw;
 }
-.workOrderCon label, .newWorkOrder label, .newTechnicianCon label {
+.workOrderCon label, .newWorkOrder label, .newTechnicianCon label{
   color: white;
   font-size: 2vw;
   font-weight: 500;
