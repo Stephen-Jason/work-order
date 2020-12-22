@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom'
 import AdminPage from './AdminPage';
+import SuperAdminPage from './SuperAdminPage';
 import TechyPage from './TechyPage'
 
 const WorkCenter = (props) => {
@@ -8,7 +9,7 @@ const WorkCenter = (props) => {
 
     return (
         <div>
-            {name === 'Admin' ? <AdminPage name={name} /> : <TechyPage name={name} />}
+            {name === 'Admin' ? <AdminPage name={name} /> : name === 'SuperAdmin' ? <SuperAdminPage name={name} /> : <TechyPage name={name} />}
         </div>
     )
 }

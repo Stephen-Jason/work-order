@@ -184,7 +184,8 @@ const NewWorkOrder = () => {
                                 className='newWorkOrderDescription'
                                 value={workOrderDescription}
                                 onChange={(e) => handleChange(e)}
-                                cols='40'>
+                                cols='40'
+                                rows='5'>
                             </textarea>
                         </div>
                         <div>

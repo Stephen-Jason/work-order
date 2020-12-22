@@ -27,6 +27,7 @@ const LoginPage = (props) => {
     return (
         <div className='loginPage'>
             <div className='users'>
+                <p className='userInfo'>User Name: SuperAdmin <br></br> Password: 1234</p>
                 <p className='userInfo'>User Name: Admin <br></br> Password: 1234</p>
                 <p className='userInfo'>User Name: Jane <br></br> Password: 1234</p>
                 <p className='userInfo'>User Name: Alice <br></br> Password: 1234</p>
@@ -51,9 +52,9 @@ const LoginPage = (props) => {
                     name='password'
                     value={password}
                     onChange={(e) => handleChange(e)}></input>
-                <button 
-                className='loginSubmitBtn'
-                onClick={handleClick}>Login</button>
+                <button
+                    className='loginSubmitBtn'
+                    onClick={handleClick}>Login</button>
             </form>
 
 

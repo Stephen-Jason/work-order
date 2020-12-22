@@ -1,6 +1,7 @@
 * {
   font-family: sans-serif;
   margin: 0;
+  padding: 0;
 }
 .loginPage {
   display: flex;
@@ -161,7 +162,7 @@
   text-align: center;
   padding: 1vw;
 }
-.addedCustomerMessage, .addedWorkOrderMessage {
+.addedCustomerMessage, .addedWorkOrderMessage, .addedTechnicianMessage {
   width: fit-content;
   margin: 0 auto;
   margin-top: 2vw;
@@ -186,7 +187,7 @@
   font-size: 2vw;
   font-weight: 500;
 }
-.customerDetailsBtn, .customerInfoEditBtn, .selectCustomerBtn, .createWorkOrderBtn {
+.customerDetailsBtn, .customerInfoEditBtn, .selectCustomerBtn, .createWorkOrderBtn, .addTechnicianBtn {
   border: none;
   background: green;
   font-size: 2vw;
@@ -218,7 +219,7 @@
   pointer-events: none;
   opacity: 0;
 }
-.workOrderCon, .newWorkOrder {
+.workOrderCon, .newWorkOrder, .newTechnicianCon {
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -227,17 +228,23 @@
   background: rgb(37, 37, 218);
   padding: 3vw;
 }
-.workOrderCon div, .newWorkOrder div {
+.workOrderCon div, .newWorkOrder div, .newTechnicianCon div {
   display: flex;
   justify-content: space-between;
   margin-top: 1vw;
 }
-.workOrderCon label, .newWorkOrder label {
+.workOrderCon label, .newWorkOrder label, .newTechnicianCon label {
   color: white;
   font-size: 2vw;
   font-weight: 500;
 }
-.workOrderInfo {
+.newWorkOrderDescription {
+  width: 50%;
+  font-size: 1vw;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.workOrderInfo  {
   width: 50%;
   background: white;
   font-size: 1.5vw;
@@ -250,4 +257,8 @@
   justify-content: center;
   width: 50%;
   margin: 0 auto;
+  margin-top: 2vw;
+}
+.userTab {
+  position: relative;
 }

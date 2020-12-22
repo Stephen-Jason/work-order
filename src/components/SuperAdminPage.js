@@ -1,11 +1,7 @@
 import { useState, useEffect } from 'react'
-import logout from '../logout.png'
-import NewCustomer from './NewCustomer'
-import Customers from './Customers'
-import NewWorkOrder from './NewWorkOrder'
-import WorkOrders from './WorkOrders'
+import Users from './Users'
 
-const AdminPage = (props) => {
+const SuperAdminPage = (props) => {
 
     const [tab, setTab] = useState('Work Orders');
 
@@ -25,27 +21,23 @@ const AdminPage = (props) => {
         tabArrow[0].classList.add('tabClicked');
     }
 
-
-
-    return (
+    return(
         <div>
             <header className='pageHeader'>
                 <p className='pageHeaderText'>{props.name}</p>
                 <div className='logoutCon'>
-                    <img className='logoutPic' src={logout} alt='logout' />
+                    <img className='logoutPic'  alt='logout' />
                     <button>Logout</button>
                 </div>
             </header>
             <nav className='navTabsCon'>
                 <p className='navTab tabClicked' name='tab'>Work Orders<span className='navTabArrow tabClicked'></span></p>
-                <p className='navTab' name='tab'>Technicians<span className='navTabArrow'></span></p>
+                <p className='navTab' name='tab'>Users<span className='navTabArrow'></span></p>
                 <p className='navTab' name='tab'>Customers<span className='navTabArrow'></span></p>
-                <p className='navTab' name='tab'>New Work Order<span className='navTabArrow'></span></p>
-                <p className='navTab' name='tab'>New Customer<span className='navTabArrow'></span></p>
-            </nav>           
-                {tab === 'Work Orders' ? <WorkOrders /> : tab === 'Technicians' ? <p>technicians page</p> : tab === 'Customers' ? <Customers /> : tab === 'New Work Order' ? <NewWorkOrder /> : tab === 'New Customer' ? <NewCustomer /> : null}
+            </nav>      
+            {tab === 'Users' ? <Users/> : null}     
         </div>
     )
 }
 
-export default AdminPage;
+export default SuperAdminPage;
