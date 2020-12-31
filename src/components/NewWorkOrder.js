@@ -69,7 +69,9 @@ const NewWorkOrder = () => {
                         dateCreated: today,
                         dateContacted: dateReceived,
                         status: 'Open',
-                        techClaimed: 'Unclaimed'
+                        techClaimed: 'Unclaimed',
+                        resolvedDate: false,
+                        resolvedDescription: false
                     });
                     localStorage.setItem('workOrders', JSON.stringify(workOrderList));
                     setSuccessMessage(`Work Order ID: ${workOrdersLength + 1} was added to the system`);

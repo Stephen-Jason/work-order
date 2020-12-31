@@ -37,6 +37,9 @@ const NewTechnician = () => {
                 });
                 localStorage.setItem('technicians', JSON.stringify(techniciansList));
                 setSuccessMessage(`${name} was added to the system`);
+                setName('');
+                setSurname('');
+                setStartDate('');
             }
             else {
                 let techniciansList = [];
@@ -48,6 +51,9 @@ const NewTechnician = () => {
                 });
                 localStorage.setItem('technicians', JSON.stringify(techniciansList));
                 setSuccessMessage(`${name} was added to the system`);
+                setName('');
+                setSurname('');
+                setStartDate('');
             }
         }
         else {

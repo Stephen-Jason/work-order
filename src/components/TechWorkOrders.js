@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const TechWorkOrders = (props) => {
 
     const [sortBy, setSortBy] = useState('All');
     const [filterBy, setFilterBy] = useState('All');
-    const [displayWorkOrders, setDisplayWorkOrders] = useState(JSON.parse(localStorage.getItem('workOrders')).filter(item => item.assignedTechnician === props.name));
-    const [resoloutionDescription, setResoloutionDescription] = useState('');
+    const [displayWorkOrders, setDisplayWorkOrders] = useState(JSON.parse(localStorage.getItem('workOrders')) ? JSON.parse(localStorage.getItem('workOrders')).filter(item => item.assignedTechnician === props.name) : false);
 
-    let workOrders = [...displayWorkOrders];
+
+    let workOrders = displayWorkOrders ? [...displayWorkOrders] : false;
     let technician = props.name;
     let customers = JSON.parse(localStorage.getItem('customers'));
 
@@ -143,34 +143,41 @@ const TechWorkOrders = (props) => {
                         <label>STATUS</label>
                         <p className='workOrderInfo'>{item.status}</p>
                     </div>
-                    <div>
-                        {item.techClaimed !== 'Claimed' ?
+
+                    {item.techClaimed === 'Unclaimed' ?
+                        <div>
                             <button
                                 name='claim'
                                 className='claimOrderBtn'
-                                onClick={(e) => handleClick(e, item.workOrderId)}>Claim Order</button> :
+                                onClick={(e) => handleClick(e, item.workOrderId)}>Claim Order</button>
+                        </div> : item.techClaimed === 'Claimed' ?
                             <div>
                                 <label>CLAIMED</label>
                                 <p className='workOrderInfo'>{item.techClaimedDate}</p>
-                            </div>}
-                        {!item.resolvedDescription && item.techClaimed ?
+                            </div> : null}
+                    {item.techClaimed === 'Claimed' && !item.resolvedDate ?
+                        <div>
+                            <label>RESOLOUTION</label>
+                            <textarea
+                                name='resoloutionDescription'
+                                className={`resoloutionDescription-${item.workOrderId}`}></textarea>
+                            <button
+                                name='resoloutionBtn'
+                                className='resoloutionBtn'
+                                onClick={(e) => handleClick(e, item.workOrderId)}>Resolve Order</button>
+                        </div> : null}
+                    {item.resolvedDate ?
+                        <div className='workOrderInfoExtraCon'>
                             <div>
-                                <label>RESOLOUTION</label>
-                                <textarea
-                                    name='resoloutionDescription'
-                                    className={`resoloutionDescription-${item.workOrderId}`}></textarea>
-                                <button
-                                    name='resoloutionBtn'
-                                    className='resoloutionBtn'
-                                    onClick={(e) => handleClick(e, item.workOrderId)}>Resolve Order</button>
-                            </div> :
+                                <label>RESOLVED DATE</label>
+                                <p className='workOrderInfo'>{item.resolvedDate}</p>
+                            </div>
                             <div>
-                                <label>RESOLOUTION DATE</label>
-                                <p className='workOrderInfo'>>{item.resolvedDate}</p>
-                                <label>RESOLOUTION DESCRIPTION</label>
-                                <p className='workOrderInfo'>>{item.resolvedDescription}</p>
-                            </div>}
-                    </div>
+                                <label>RESOLVED DESCRIPTION</label>
+                                <p className='workOrderInfo'>{item.resolvedDescription}</p>
+                            </div>
+                        </div> : null}
+
                 </div>) : <p>no work orders</p>}
         </div>
     )

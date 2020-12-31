@@ -262,3 +262,44 @@
 .userTab {
   position: relative;
 }
+.workOrderInfoExtraCon {
+  display: flex;
+  flex-direction: column;
+}
+.optionsCon {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.option {
+  width: 30%;
+  margin-top: 2vw;
+  text-align: center;
+  background: blue;
+  color: white;
+  font-size: 1.5vw;
+  font-weight: 600;
+  transition: transform 400ms ease;
+}
+.option p {
+  padding: 3vw;
+  cursor: pointer;
+}
+.option:hover {
+  transform: scale(1.05);
+}
+.techCon {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 2vw;
+  background: blue;
+}
+.techCon p {
+  
+  font-size: 1.5vw;
+  font-weight: 600;
+  color: white;
+
+}

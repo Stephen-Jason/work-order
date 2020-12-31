@@ -1,41 +1,78 @@
 import { useState, useEffect } from 'react'
-import Users from './Users'
+import NewTechnician from './NewTechnician'
+import Technicians from './Technicians'
 
 const SuperAdminPage = (props) => {
 
-    const [tab, setTab] = useState('Work Orders');
+    const [tab, setTab] = useState('Home');
 
-    useEffect(() => {
-        const tabs = document.querySelectorAll('.navTab');
-        const tabArrows = document.querySelectorAll('.navTabArrow');
-        tabs.forEach(item => item.addEventListener('click', (e) => { tabEvents(e, tabs, tabArrows, item) }));
-
+    useEffect(()=>{
+        document.querySelectorAll('.option').forEach(item=> item.addEventListener('click', ()=>{
+            setTab(item.childNodes[0].innerHTML);
+        }))
     });
 
-    const tabEvents = (e, tabs, tabArrows, item) => {
-        setTab(e.target.innerText);
-        let tabArrow = item.children;
-        tabs.forEach(item => item.classList.remove('tabClicked'));
-        tabArrows.forEach(item => item.classList.remove('tabClicked'));
-        e.target.classList.add('tabClicked');
-        tabArrow[0].classList.add('tabClicked');
-    }
-
-    return(
+    return (
         <div>
             <header className='pageHeader'>
                 <p className='pageHeaderText'>{props.name}</p>
                 <div className='logoutCon'>
-                    <img className='logoutPic'  alt='logout' />
+                    <img className='logoutPic' alt='logout' />
                     <button>Logout</button>
                 </div>
             </header>
-            <nav className='navTabsCon'>
-                <p className='navTab tabClicked' name='tab'>Work Orders<span className='navTabArrow tabClicked'></span></p>
-                <p className='navTab' name='tab'>Users<span className='navTabArrow'></span></p>
-                <p className='navTab' name='tab'>Customers<span className='navTabArrow'></span></p>
-            </nav>      
-            {tab === 'Users' ? <Users/> : null}     
+            {tab === 'Home' ?
+                <div className='optionsCon'>
+                    <div className='option'>
+                        <p>New Technician</p>
+                    </div>
+                    <div className='option'>
+                        <p>Technicians</p>
+                    </div>
+                    <div className='option'>
+                        <p>View Job Orders</p>
+                    </div>
+                    <div className='option'>
+                        <p>Edit Job Orders</p>
+                    </div>
+                    <div className='option'>
+                        <p>New Users</p>
+                    </div>
+                    <div className='option'>
+                        <p>View Users History</p>
+                    </div>
+                </div>
+                : tab === 'New Technician' ?
+                    <div>
+                        <button onClick={()=>setTab('Home')}>Go Back</button>
+                        <NewTechnician/>
+                    </div> 
+                    : tab === 'Technicians' ?
+                    <div>
+                        <button onClick={()=>setTab('Home')}>Go Back</button>
+                        <Technicians/>
+                    </div> 
+                    : tab === 'View Job Orders' ?
+                    <div>
+                        <button onClick={()=>setTab('Home')}>Go Back</button>
+                        <p>View Job Orders</p>
+                    </div> 
+                    : tab === 'Edit Job Orders' ?
+                    <div>
+                        <button onClick={()=>setTab('Home')}>Go Back</button>
+                        <p>Edit Job Orders</p>
+                    </div> 
+                    : tab === 'New Users' ?
+                    <div>
+                        <button onClick={()=>setTab('Home')}>Go Back</button>
+                        <p>New Users</p>
+                    </div> 
+                    : tab === 'View Users History' ?
+                    <div>
+                        <button onClick={()=>setTab('Home')}>Go Back</button>
+                        <p>View Users History</p>
+                    </div> 
+                    : null}
         </div>
     )
 }

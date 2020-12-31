@@ -4,6 +4,7 @@ import NewCustomer from './NewCustomer'
 import Customers from './Customers'
 import NewWorkOrder from './NewWorkOrder'
 import WorkOrders from './WorkOrders'
+import Technicians from './Technicians'
 
 const AdminPage = (props) => {
 
@@ -43,7 +44,7 @@ const AdminPage = (props) => {
                 <p className='navTab' name='tab'>New Work Order<span className='navTabArrow'></span></p>
                 <p className='navTab' name='tab'>New Customer<span className='navTabArrow'></span></p>
             </nav>           
-                {tab === 'Work Orders' ? <WorkOrders /> : tab === 'Technicians' ? <p>technicians page</p> : tab === 'Customers' ? <Customers /> : tab === 'New Work Order' ? <NewWorkOrder /> : tab === 'New Customer' ? <NewCustomer /> : null}
+                {tab === 'Work Orders' ? <WorkOrders /> : tab === 'Technicians' ? <Technicians/> : tab === 'Customers' ? <Customers /> : tab === 'New Work Order' ? <NewWorkOrder /> : tab === 'New Customer' ? <NewCustomer /> : null}
         </div>
     )
 }
