@@ -288,7 +288,7 @@
   cursor: pointer;
 }
 .option:hover {
-  transform: scale(1.05);
+  background: rgb(30, 30, 247);
 }
 .techCon {
   width: 50%;

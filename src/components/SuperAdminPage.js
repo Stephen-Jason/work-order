@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import NewTechnician from './NewTechnician'
+import WorkOrders from './WorkOrders';
 import Technicians from './Technicians'
 
 const SuperAdminPage = (props) => {
@@ -55,7 +56,7 @@ const SuperAdminPage = (props) => {
                     : tab === 'View Job Orders' ?
                     <div>
                         <button onClick={()=>setTab('Home')}>Go Back</button>
-                        <p>View Job Orders</p>
+                        <WorkOrders/>
                     </div> 
                     : tab === 'Edit Job Orders' ?
                     <div>
