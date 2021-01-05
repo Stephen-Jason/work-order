@@ -5,8 +5,14 @@ const Customers = () => {
     const customers = JSON.parse(localStorage.getItem('customers'));
     let history = useHistory();
 
-    const handleClick = (id) => {
-        history.push(`/customerDetails/${id}`);
+    const handleClick = (id, e) => {
+        const { name } = e.target;
+        if (name === 'customerDetailsBtn') {
+            history.push(`/customerDetails/${id}`);
+        }
+        else if (name === 'customerEditBtn') {
+            history.push(`/customerEdit/${id}`);
+        }
     }
 
     return (
@@ -22,9 +28,12 @@ const Customers = () => {
                         <p className='customerInfo'>CUSTOMER ID: {item.id}</p>
                         <button
                             className='customerDetailsBtn'
-                            onClick={() => handleClick(item.id)}>View Work Orders</button>
+                            name='customerDetailsBtn'
+                            onClick={(e) => handleClick(item.id, e)}>View Work Orders</button>
                         <button
-                            className='customerDetailsBtn'>Edit Customer Info</button>
+                            className='customerDetailsBtn'
+                            name='customerEditBtn'
+                            onClick={(e) => handleClick(item.id, e)}>Edit Customer Info</button>
                     </div>) : <h1>no customers yet</h1>}
             </div>
         </div>
