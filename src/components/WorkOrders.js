@@ -4,6 +4,9 @@ const WorkOrders = () => {
 
     const [sortBy, setSortBy] = useState('All');
     const [filterBy, setFilterBy] = useState('All');
+    const [searchBy, setSearchBy] = useState('Customer Name');
+    const [searchInput, setSearchInput] = useState('');
+    const [errorMessage, setErrorMessage] = useState(false);
 
     let workOrders = JSON.parse(localStorage.getItem('workOrders'));
     let customers = JSON.parse(localStorage.getItem('customers'));
@@ -21,50 +24,96 @@ const WorkOrders = () => {
         else if (name === 'filterBy') {
             setFilterBy(value);
         }
-    }
-
-    const sortedBy = (value) => {
-        if (value === 'All') {
-            return workOrders;
+        else if (name === 'searchBy') {
+            setSearchBy(value);
         }
-        else if (value === 'Customer') {
-            return workOrders.sort((a, b) => a.customerId - b.customerId);
-        }
-        else if (value === 'Technician') {
-            return workOrders.sort((a, b) => a.assignedTechnician - b.assignedTechnician);
-        }
-        else if (value === 'Date') {
-            return workOrders.sort((a, b) => a.dateCreated - b.dateCreated);
+        else if (name === 'searchInput') {
+            setSearchInput(value);
         }
     }
 
-    const filteredBy = (cb, value) => {
-        if (value === 'All') {
+    //will return a sorted array based on sort preference
+    const sortedBy = (array) => {
+        if (sortBy === 'All') {
+            return array;
+        }
+        else if (sortBy === 'Customer') {
+            return array.sort((a, b) => a.customerId - b.customerId);
+        }
+        else if (sortBy === 'Technician') {
+            return array.sort((a, b) => a.assignedTechnician - b.assignedTechnician);
+        }
+        else if (sortBy === 'Date') {
+            return array.sort((a, b) => a.dateCreated - b.dateCreated);
+        }
+    }
+    //will return an array of workorders based on status chosen
+    const filteredBy = (array) => {
+        if (filterBy === 'All') {
+            return array;
+        }
+        else if (filterBy === 'Open') {
+            return array.filter(item => item.status === 'Open');
+        }
+        else if (filterBy === 'Closed') {
+            return array.filter(item => item.status === 'Closed');
+        }
+        else if (filterBy === 'Unclaimed') {
+            return array.filter(item => item.techClaimed === 'Unclaimed');
+        }
+    }
+
+   
+
+    //will return an array of workorders based on search input
+    const handleSearchInputFiltering = () => {
+        if (searchInput) {
+            if (searchBy === 'Customer Name') {
+                let searchInputCustomerNameResults = customers.filter(item => item.name.toLowerCase().includes(searchInput.toLowerCase()));
+                let searchInputCustomerIds = searchInputCustomerNameResults.map(item => item.id);
+                let arrayOfWorkOrders = [];
+                searchInputCustomerIds.forEach(index => { arrayOfWorkOrders.push(...workOrders.filter(item => item.customerId === index)) });
+                if (arrayOfWorkOrders) {
+                   return arrayOfWorkOrders;
+                }
+                else {
+                    setErrorMessage('No results found, try another field or check input');
+                    return workOrders;
+                }
+            }
+            else if(searchBy === 'Customer ID'){
+                let searchInputCustomerIdResults = customers.filter(item=>item.id.toString().includes(searchInput.toString()));
+                let searchInputCustomerIds = searchInputCustomerIdResults.map(item=>item.id);
+                let arrayOfWorkOrders = [];
+                searchInputCustomerIds.forEach(index=>{arrayOfWorkOrders.push(...workOrders.filter(item=>item.customerId === index))});
+                if (arrayOfWorkOrders) {
+                    return arrayOfWorkOrders;
+                }
+                else {
+                    setErrorMessage('No results found, try another field or check input');
+                    return workOrders;
+                }
+            }
+            else if(searchBy === 'Work Order ID'){
+                let searchInputWorkOrderIdResults = workOrders.filter(item=>item.workOrderId.toString().includes(searchInput.toString()));
+                if (searchInputWorkOrderIdResults) {
+                    return searchInputWorkOrderIdResults;
+                }
+                else {
+                    setErrorMessage('No results found, try another field or check input');
+                    return workOrders;
+                }
+            }
+        }
+        else {
             return workOrders;
-        }
-        else if (value === 'Open') {
-            return cb.filter(item => item.status === 'Open');
-        }
-        else if (value === 'Closed') {
-            return cb.filter(item => item.status === 'Closed');
-        }
-        else if (value === 'Unclaimed') {
-            return cb.filter(item => item.techClaimed === 'Unclaimed');
         }
     }
 
     return (
         <div>
             <div className='workOrderSelectCon'>
-                <select
-                    name='sortBy'
-                    value={sortBy}
-                    onChange={(e) => handleChange(e)}>
-                    <option>All</option>
-                    <option>Customer</option>
-                    <option>Technician</option>
-                    <option>Date</option>
-                </select>
+                <label>Filter Options</label>
                 <select
                     name='filterBy'
                     value={filterBy}
@@ -74,8 +123,33 @@ const WorkOrders = () => {
                     <option>Closed</option>
                     <option>Unclaimed</option>
                 </select>
+                <label>Sorting Options</label>
+                <select
+                    name='sortBy'
+                    value={sortBy}
+                    onChange={(e) => handleChange(e)}>
+                    <option>All</option>
+                    <option>Customer</option>
+                    <option>Technician</option>
+                    <option>Date</option>
+                </select>
             </div>
-            {workOrders ? filteredBy(sortedBy(sortBy), filterBy).map(item =>
+            <div className='workOrderSearchCon'>
+                <select
+                    name='searchBy'
+                    value={searchBy}
+                    onChange={(e) => handleChange(e)}>
+                    <option>Customer Name</option>
+                    <option>Customer ID</option>
+                    <option>Work Order ID</option>
+                </select>
+                <input
+                    type='text'
+                    name='searchInput'
+                    value={searchInput}
+                    onChange={(e) => handleChange(e)} />
+            </div>
+            {workOrders ? sortedBy(filteredBy(handleSearchInputFiltering())).map(item =>
                 <div className='workOrderCon' key={item.workOrderId}>
                     <div>
                         <label>CUSTOMER</label>
@@ -119,3 +193,15 @@ const WorkOrders = () => {
 }
 
 export default WorkOrders;
+
+/*
+    
+    
+ */
+
+/*
+outline: Have a function that returns an array of the work orders based on the filter and search options.
+step 1) Need to filter array based on any search input.
+step 2) Need to filter array based on the sorted and filtered values from the dropdown selectors.
+step 3) Return the filtered array.
+*/

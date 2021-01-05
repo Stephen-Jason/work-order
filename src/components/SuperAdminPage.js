@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import NewTechnician from './NewTechnician'
 import WorkOrders from './WorkOrders';
 import Technicians from './Technicians'
@@ -6,9 +7,10 @@ import Technicians from './Technicians'
 const SuperAdminPage = (props) => {
 
     const [tab, setTab] = useState('Home');
+    let history = useHistory();
 
-    useEffect(()=>{
-        document.querySelectorAll('.option').forEach(item=> item.addEventListener('click', ()=>{
+    useEffect(() => {
+        document.querySelectorAll('.option').forEach(item => item.addEventListener('click', () => {
             setTab(item.childNodes[0].innerHTML);
         }))
     });
@@ -19,7 +21,8 @@ const SuperAdminPage = (props) => {
                 <p className='pageHeaderText'>{props.name}</p>
                 <div className='logoutCon'>
                     <img className='logoutPic' alt='logout' />
-                    <button>Logout</button>
+                    <button
+                    onClick={()=>history.push('/')}>Logout</button>
                 </div>
             </header>
             {tab === 'Home' ?
@@ -45,35 +48,35 @@ const SuperAdminPage = (props) => {
                 </div>
                 : tab === 'New Technician' ?
                     <div>
-                        <button onClick={()=>setTab('Home')}>Go Back</button>
-                        <NewTechnician/>
-                    </div> 
+                        <button onClick={() => setTab('Home')}>Go Back</button>
+                        <NewTechnician />
+                    </div>
                     : tab === 'Technicians' ?
-                    <div>
-                        <button onClick={()=>setTab('Home')}>Go Back</button>
-                        <Technicians/>
-                    </div> 
-                    : tab === 'View Job Orders' ?
-                    <div>
-                        <button onClick={()=>setTab('Home')}>Go Back</button>
-                        <WorkOrders/>
-                    </div> 
-                    : tab === 'Edit Job Orders' ?
-                    <div>
-                        <button onClick={()=>setTab('Home')}>Go Back</button>
-                        <p>Edit Job Orders</p>
-                    </div> 
-                    : tab === 'New Users' ?
-                    <div>
-                        <button onClick={()=>setTab('Home')}>Go Back</button>
-                        <p>New Users</p>
-                    </div> 
-                    : tab === 'View Users History' ?
-                    <div>
-                        <button onClick={()=>setTab('Home')}>Go Back</button>
-                        <p>View Users History</p>
-                    </div> 
-                    : null}
+                        <div>
+                            <button onClick={() => setTab('Home')}>Go Back</button>
+                            <Technicians />
+                        </div>
+                        : tab === 'View Job Orders' ?
+                            <div>
+                                <button onClick={() => setTab('Home')}>Go Back</button>
+                                <WorkOrders />
+                            </div>
+                            : tab === 'Edit Job Orders' ?
+                                <div>
+                                    <button onClick={() => setTab('Home')}>Go Back</button>
+                                    <p>Edit Job Orders</p>
+                                </div>
+                                : tab === 'New Users' ?
+                                    <div>
+                                        <button onClick={() => setTab('Home')}>Go Back</button>
+                                        <p>New Users</p>
+                                    </div>
+                                    : tab === 'View Users History' ?
+                                        <div>
+                                            <button onClick={() => setTab('Home')}>Go Back</button>
+                                            <p>View Users History</p>
+                                        </div>
+                                        : null}
         </div>
     )
 }

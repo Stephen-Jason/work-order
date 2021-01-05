@@ -22,7 +22,9 @@ const Customers = () => {
                         <p className='customerInfo'>CUSTOMER ID: {item.id}</p>
                         <button
                             className='customerDetailsBtn'
-                            onClick={() => handleClick(item.id)}>Details</button>
+                            onClick={() => handleClick(item.id)}>View Work Orders</button>
+                        <button
+                            className='customerDetailsBtn'>Edit Customer Info</button>
                     </div>) : <h1>no customers yet</h1>}
             </div>
         </div>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import logout from '../logout.png'
 import NewCustomer from './NewCustomer'
 import Customers from './Customers'
@@ -9,6 +10,7 @@ import Technicians from './Technicians'
 const AdminPage = (props) => {
 
     const [tab, setTab] = useState('Work Orders');
+    let history = useHistory();
 
     useEffect(() => {
         const tabs = document.querySelectorAll('.navTab');
@@ -34,7 +36,8 @@ const AdminPage = (props) => {
                 <p className='pageHeaderText'>{props.name}</p>
                 <div className='logoutCon'>
                     <img className='logoutPic' src={logout} alt='logout' />
-                    <button>Logout</button>
+                    <button
+                    onClick={()=>history.push('/')}>Logout</button>
                 </div>
             </header>
             <nav className='navTabsCon'>
@@ -43,8 +46,8 @@ const AdminPage = (props) => {
                 <p className='navTab' name='tab'>Customers<span className='navTabArrow'></span></p>
                 <p className='navTab' name='tab'>New Work Order<span className='navTabArrow'></span></p>
                 <p className='navTab' name='tab'>New Customer<span className='navTabArrow'></span></p>
-            </nav>           
-                {tab === 'Work Orders' ? <WorkOrders /> : tab === 'Technicians' ? <Technicians/> : tab === 'Customers' ? <Customers /> : tab === 'New Work Order' ? <NewWorkOrder /> : tab === 'New Customer' ? <NewCustomer /> : null}
+            </nav>
+            {tab === 'Work Orders' ? <WorkOrders /> : tab === 'Technicians' ? <Technicians /> : tab === 'Customers' ? <Customers /> : tab === 'New Work Order' ? <NewWorkOrder /> : tab === 'New Customer' ? <NewCustomer /> : null}
         </div>
     )
 }
