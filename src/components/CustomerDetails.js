@@ -20,7 +20,7 @@ const CustomerDetails = (props) => {
     return (
         <div>
             <button
-            onClick={()=>history.push('/home/Admin')}>Go Back</button>
+            onClick={()=>history.goBack()}>Go Back</button>
             {customer.map(item =>
                 <div className='customerCon' key={item.id}>
                     <p className='customerInfo'>NAME: {item.name}</p>

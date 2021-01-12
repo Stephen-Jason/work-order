@@ -13,13 +13,14 @@ const NewCustomer = () => {
 
     const handleClick = () => {
         if (name && surname && telephone && address) {
+            let months = [1,2,3,4,5,6,7,8,9,10,11,12];
             setErrorMessage(false);
             setSuccessMessage(false);
             if (customers) {
                 let customersList = [...customers];
                 let customersLength = customersList.length;
                 let date = new Date();
-                let today = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+                let today = `${date.getDate()}/${months[date.getMonth()]}/${date.getFullYear()}`;
                 customersList.push(
                     {
                         id: customersLength + 1,

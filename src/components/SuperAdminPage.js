@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import NewTechnician from './NewTechnician'
+import Customers from './Customers'
+import NewCustomer from './NewCustomer'
 import WorkOrders from './WorkOrders';
 import Technicians from './Technicians'
 import logout from '../logout.png'
@@ -29,7 +30,10 @@ const SuperAdminPage = (props) => {
             {tab === 'Home' ?
                 <div className='optionsCon'>
                     <div className='option'>
-                        <p>New Technician</p>
+                        <p>Customers</p>
+                    </div>
+                    <div className='option'>
+                        <p>New Customer</p>
                     </div>
                     <div className='option'>
                         <p>Technicians</p>
@@ -38,10 +42,15 @@ const SuperAdminPage = (props) => {
                         <p>View Job Orders</p>
                     </div>
                 </div>
-                : tab === 'New Technician' ?
+                : tab === 'Customers' ?
                     <div>
                         <button onClick={() => setTab('Home')}>Go Back</button>
-                        <NewTechnician />
+                        <Customers />
+                    </div>
+                : tab === 'New Customer' ?
+                    <div>
+                        <button onClick={() => setTab('Home')}>Go Back</button>
+                        <NewCustomer />
                     </div>
                     : tab === 'Technicians' ?
                         <div>
