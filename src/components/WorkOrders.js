@@ -112,6 +112,7 @@ const WorkOrders = () => {
 
     return (
         <div>
+            <div>{errorMessage ? <p className='errorMessage'>{errorMessage}</p> : null}</div>
             <div className='workOrderSelectCon'>
                 <label>Filter Options</label>
                 <select
