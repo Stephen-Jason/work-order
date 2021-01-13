@@ -33,6 +33,7 @@ const NewWorkOrder = () => {
     const handleClick = (e, id) => {
         const { name } = e.target;
         if (name === 'searchNameBtn') {
+            if(customers){
             let searchResults = customers.filter(item => item.name.toLowerCase().includes(searchName));
             setCustomerList(searchResults);
             setSuccessMessage(false);
@@ -43,6 +44,12 @@ const NewWorkOrder = () => {
                 newWorkOrderCon.classList.add('hide');
             }
         }
+        else{
+            setErrorMessage('No results found');
+        }
+        }
+
+        
         else if (name === 'selectCustomerBtn') {
             let chosenCustomer = customers.filter(item => item.id === id);
             setSelectedCustomer(chosenCustomer);
